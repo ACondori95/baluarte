@@ -3,6 +3,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/database.js";
 
+// --- MIDDLEWARES Y RUTAS ---
+import userRoutes from "./routes/user.routes.js";
+import {errorHandler} from "./middleware/error.middleware.js";
+
 // Cargar variables de entorno (Debe ir primero)
 dotenv.config();
 
@@ -21,13 +25,23 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // ------------------------------------
-// RUTAS PRINCIPALES (Placeholder)
+// DEFINICIÓN DE RUTAS
 // ------------------------------------
+// Ruta principal de bienvenida
 app.get("/", (req, res) => {
   res.send("API de Baluarte funcionando...");
 });
+
+// Rutas de Usuario: /api/users/*
+app.use("/api/users", userRoutes);
+
+// ------------------------------------
+// MANEJO DE ERRORES GLOBAL
+// ------------------------------------
+app.use(errorHandler);
 
 // Inicializar el servidor
 app.listen(PORT, () => {
