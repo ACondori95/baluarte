@@ -5,6 +5,7 @@ import connectDB from "./config/database.js";
 
 // --- MIDDLEWARES Y RUTAS ---
 import userRoutes from "./routes/user.routes.js";
+import transactionRoutes from "./routes/transaction.routes.js";
 import {errorHandler} from "./middleware/error.middleware.js";
 
 // Cargar variables de entorno (Debe ir primero)
@@ -37,6 +38,9 @@ app.get("/", (req, res) => {
 
 // Rutas de Usuario: /api/users/*
 app.use("/api/users", userRoutes);
+
+// Rutas de Transacciones: /api/transactions/*
+app.use("/api/transactions", transactionRoutes);
 
 // ------------------------------------
 // MANEJO DE ERRORES GLOBAL
