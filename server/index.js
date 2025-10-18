@@ -7,6 +7,7 @@ import connectDB from "./config/database.js";
 import userRoutes from "./routes/user.routes.js";
 import transactionRoutes from "./routes/transaction.routes.js";
 import budgetRoutes from "./routes/budget.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
 import {errorHandler} from "./middleware/error.middleware.js";
 
 // Cargar variables de entorno (Debe ir primero)
@@ -43,8 +44,11 @@ app.use("/api/users", userRoutes);
 // Rutas de Transacciones: /api/transactions/*
 app.use("/api/transactions", transactionRoutes);
 
-// Ritas de Presupuestos: /api/budgets/*
+// Rutas de Presupuestos: /api/budgets/*
 app.use("/api/budgets", budgetRoutes);
+
+// Rutas de Pagos/Mercado Pago: /api/payments/*
+app.use("/api/payments", paymentRoutes);
 
 // ------------------------------------
 // MANEJO DE ERRORES GLOBAL
