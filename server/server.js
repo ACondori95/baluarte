@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const categoryRoutes = require("./routes/category");
 
 // 2. Cargar variables de entorno del archivo .env
 dotenv.config();
@@ -29,6 +30,9 @@ app.use("/api/auth", authRoutes);
 
 // Montar las rutas de usuario (perfil, etc.) en /api/users
 app.use("/api/users", userRoutes);
+
+// Montar las rutas de categorías en /api/categories
+app.use("/api/categories", categoryRoutes);
 
 // 7. Configurar Puerto y Ejecutar Servidor
 const PORT = process.env.PORT || 5000;
