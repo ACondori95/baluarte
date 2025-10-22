@@ -4,8 +4,7 @@ import {useAuth} from "./context/AuthContext";
 
 // Importaciones de páginas
 import LoginPage from "./pages/auth/LoginPage";
-// Se asume la existencia de RegisterPage y DashboardPage para la estructura
-// import RegisterPage from './pages/auth/RegisterPage';
+import RegisterPage from "./pages/auth/RegisterPage";
 // import DashboardPage from './pages/dashboard/DashboardPage';
 
 // Componente Wrapper para proteger rutas
@@ -21,10 +20,7 @@ const App = () => {
       <Routes>
         {/* Rutas Públicas */}
         <Route path='/login' element={<LoginPage />} />
-        <Route
-          path='/register'
-          element={<div>Register Page (Próximamente)</div>}
-        />
+        <Route path='/register' element={<RegisterPage />} />
 
         {/* Rutas Protegidas (Requieren Login) */}
         <Route

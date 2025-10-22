@@ -70,7 +70,30 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  // 3. Función de Logout
+  // 3. Función de Registro
+  const register = async (formData) => {
+    try {
+      // Llamada al endpoint de registro
+      const {data} = await axios.post("/api/auth/register", formData);
+
+      // Una vez registrado, iniciamos sesión automáticamente
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data));
+
+      // Actualizar estado
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: {user: data, token: data.token},
+      });
+
+      // Retornamos el éxito
+      return data;
+    } catch (error) {
+      throw error.response.data.message || "Error de conexión.";
+    }
+  };
+
+  // 4. Función de Logout
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -79,7 +102,13 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{state, login, logout, isAuthenticated: state.isAuthenticated}}>
+      value={{
+        state,
+        login,
+        register,
+        logout,
+        isAuthenticated: state.isAuthenticated,
+      }}>
       {children}
     </AuthContext.Provider>
   );
