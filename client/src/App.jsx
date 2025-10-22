@@ -5,7 +5,7 @@ import {useAuth} from "./context/AuthContext";
 // Importaciones de páginas
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
-// import DashboardPage from './pages/dashboard/DashboardPage';
+import DashboardPage from "./pages/dashboard/DashboardPage";
 
 // Componente Wrapper para proteger rutas
 const ProtectedRoute = ({children}) => {
@@ -27,8 +27,7 @@ const App = () => {
           path='/dashboard'
           element={
             <ProtectedRoute>
-              {/* Reemplazar con el componente real del Dashboard */}
-              <div>Dashboard (Bienvenido!)</div>
+              <DashboardPage />
             </ProtectedRoute>
           }
         />
