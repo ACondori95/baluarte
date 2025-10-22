@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const transactionRoutes = require("./routes/transaction");
 const reportRoutes = require("./routes/report");
+const budgetRoutes = require("./routes/budget");
 
 // 2. Cargar variables de entorno del archivo .env
 dotenv.config();
@@ -41,6 +42,9 @@ app.use("/api/transactions", transactionRoutes);
 
 // Montar las rutas de reportes en /api/reports
 app.use("/api/reports", reportRoutes);
+
+// Montar las rutas de presupuestos en /api/budgets
+app.use("/api/budgets", budgetRoutes);
 
 // 7. Configurar Puerto y Ejecutar Servidor
 const PORT = process.env.PORT || 5000;
