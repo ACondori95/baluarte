@@ -6,6 +6,7 @@ import {useAuth} from "./context/AuthContext";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
+import CategoryManagementPage from "./pages/dashboard/CategoryManagementPage";
 
 // Componente Wrapper para proteger rutas
 const ProtectedRoute = ({children}) => {
@@ -28,6 +29,15 @@ const App = () => {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path='/categories'
+          element={
+            <ProtectedRoute>
+              <CategoryManagementPage />
             </ProtectedRoute>
           }
         />

@@ -14,6 +14,12 @@ const Header = () => {
       <nav style={styles.nav}>
         {state.isAuthenticated ? (
           <>
+            <Link to='/dashboard' style={styles.link}>
+              Dashboard
+            </Link>
+            <Link to='/categories' style={styles.link}>
+              Categorías
+            </Link>
             <span style={styles.userInfo}>
               Hola, {state.user?.name} (Plan: {state.user?.plan})
             </span>
