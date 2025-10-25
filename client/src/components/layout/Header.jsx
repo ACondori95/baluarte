@@ -20,6 +20,9 @@ const Header = () => {
             <Link to='/categories' style={styles.link}>
               Categorías
             </Link>
+            <Link to='/transactions' style={styles.link}>
+              Transacciones
+            </Link>
             <span style={styles.userInfo}>
               Hola, {state.user?.name} (Plan: {state.user?.plan})
             </span>

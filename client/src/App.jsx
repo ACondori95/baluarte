@@ -7,6 +7,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import CategoryManagementPage from "./pages/dashboard/CategoryManagementPage";
+import TransactionManagementPage from "./pages/dashboard/TransactionManagementPage";
 
 // Componente Wrapper para proteger rutas
 const ProtectedRoute = ({children}) => {
@@ -38,6 +39,15 @@ const App = () => {
           element={
             <ProtectedRoute>
               <CategoryManagementPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path='/transactions'
+          element={
+            <ProtectedRoute>
+              <TransactionManagementPage />
             </ProtectedRoute>
           }
         />
