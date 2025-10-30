@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 const {notFound, errorHandler} = require("./middleware/errorMiddleware");
 
 // Cargar variables de entorno
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 
 // Usar Rutas
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 // Middleware de manejo de errores
 app.use(notFound);
