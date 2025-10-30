@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const authRoutes = require("./routes/authRoutes");
+const {notFound, errorHandler} = require("./middleware/errorMiddleware");
+
 // Cargar variables de entorno
 dotenv.config();
 
@@ -32,6 +35,13 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("API de Baluarte en ejecución...");
 });
+
+// Usar Rutas
+app.use("/api/auth", authRoutes);
+
+// Middleware de manejo de errores
+app.use(notFound);
+app.use(errorHandler);
 
 // Definir Puerto
 const PORT = process.env.PORT || 5000;
