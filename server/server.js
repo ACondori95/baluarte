@@ -9,6 +9,7 @@ const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
 const mpRoutes = require("./routes/mpRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const {notFound, errorHandler} = require("./middleware/errorMiddleware");
 
 // Cargar variables de entorno
@@ -46,6 +47,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/mercadopago", mpRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // Middleware de manejo de errores
 app.use(notFound);
