@@ -2,7 +2,7 @@ import {createContext, useContext, useEffect, useState} from "react";
 import axios from "axios";
 
 // La URL base de nuestro backend
-const API_URL = "http://localhost:500/api/auth";
+const API_URL = "http://localhost:5000/api/auth";
 
 // 1. Crear el Contexto
 const AuthContext = createContext();
