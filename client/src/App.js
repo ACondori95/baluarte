@@ -1,4 +1,3 @@
-import React from "react";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -7,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import SubscriptionsPage from "./pages/SubscriptionsPage";
+import {useAuth} from "./auth/AuthContext";
 
 // Componente que verifica si el usuario puede acceder a una ruta
 const ProtectedRoute = ({element: Element, ...rest}) => {
