@@ -90,7 +90,7 @@ const getDashboardData = asyncHandler(async (req, res) => {
   let transactionCount = 0;
 
   if (isBasePlan) {
-    transactionCount = await Transaction.countDocument({
+    transactionCount = await Transaction.countDocuments({
       user: userId,
       date: {$gte: startOfMonth, $lte: endOfMonth},
     });
