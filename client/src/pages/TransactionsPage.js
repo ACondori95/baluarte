@@ -61,7 +61,20 @@ const TransactionsPage = () => {
 
   const handleFormChange = (e) => {
     const {name, value} = e.target;
-    setForm((prev) => ({...prev, [name]: value}));
+
+    if (name === "type") {
+      const newDefaultCategory = categories
+        .filter((cat) => cat.type === value)
+        .sort((a, b) => a.name.localeCompare(b.name))[0];
+
+      setForm((prev) => ({
+        ...prev,
+        [name]: value,
+        categoryId: newDefaultCategory ? newDefaultCategory._id : "",
+      }));
+    } else {
+      setForm((prev) => ({...prev, [name]: value}));
+    }
   };
 
   const handleTransactionSubmit = async (e) => {
@@ -88,8 +101,17 @@ const TransactionsPage = () => {
         category: form.categoryId, // El backend espera 'category' en lugar de 'categoryId'
       });
 
+      const categoryObject = categories.find(
+        (cat) => cat._id === newTransaction.category
+      );
+
+      const transactionToShow = {
+        ...newTransaction,
+        category: categoryObject || {name: "Sin Categoría"},
+      };
+
       // Añadir la nueva transacción al listado y resetear el formulario
-      setTransactions([newTransaction, ...transactions]);
+      setTransactions([transactionToShow, ...transactions]);
       setForm({
         description: "",
         amount: "",
@@ -98,7 +120,7 @@ const TransactionsPage = () => {
         date: new Date().toISOString().substring(0, 10),
       });
     } catch (error) {
-      // Manejo del error de Límiite Alcanzado o cualquier otro error
+      // Manejo del error de Límite Alcanzado o cualquier otro error
       setError(
         error.response?.data?.message || "Error al registrar la transacción."
       );
@@ -133,8 +155,7 @@ const TransactionsPage = () => {
     );
   }
 
-  const tipoTransaccion =
-    categories.filter((c) => c._id === form.categoryId)[0]?.type || "N/A";
+  const tipoTransaccion = form.type;
 
   return (
     <Layout>
@@ -202,7 +223,7 @@ const TransactionsPage = () => {
 
           {/* Descripción */}
           <div className='form-group'>
-            <label>Description:</label>
+            <label>Descripción:</label>
             <input
               type='text'
               name='description'
