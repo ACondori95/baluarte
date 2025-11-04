@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../auth/AuthContext";
+import styles from "./AuthPage.module.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -35,33 +36,46 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='auth-container'>
-      <h2>Iniciar Sesión</h2>
-      {message && <p className='error-message'>{message}</p>}
+    <div className={styles.authPage}>
+      {/* Columna de Marca */}
+      <div className={styles.brandColumn}>BALUARTE</div>
 
-      <form onSubmit={submitHandler}>
-        <input
-          type='email'
-          placeholder='Correo Electrónico'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type='password'
-          placeholder='Contraseña'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type='submit' disabled={loading}>
-          {loading ? "Accediendo..." : "Iniciar Sesión"}
-        </button>
-      </form>
+      {/* Columna de Contenido */}
+      <div className={styles.contentColumn}>
+        {/* Contenedor del Formulario */}
+        <div className={styles.authContainer}>
+          <h2>Iniciar Sesión</h2>
+          {message && <p className='error-message'>{message}</p>}
 
-      <p>
-        ¿No tenés una cuenta? <Link to='/register'>Registrate</Link>
-      </p>
+          <form onSubmit={submitHandler}>
+            <input
+              type='email'
+              placeholder='Correo Electrónico'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type='password'
+              placeholder='Contraseña'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type='submit'
+              disabled={loading}
+              className='btn btnPrimary'
+              style={{width: "100%", marginTop: "10px"}}>
+              {loading ? "Accediendo..." : "Iniciar Sesión"}
+            </button>
+          </form>
+
+          <p>
+            ¿No tenés una cuenta? <Link to='/register'>Registrate</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

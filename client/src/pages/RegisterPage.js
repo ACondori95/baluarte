@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../auth/AuthContext";
+import styles from "./AuthPage.module.css";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -36,40 +37,53 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='auth-container'>
-      <h2>Crear Cuenta Baluarte</h2>
-      {message && <p className='error-message'>{message}</p>}
+    <div className={styles.authPage}>
+      {/* Columna de Marca */}
+      <div className={styles.brandColumn}>BALUARTE</div>
 
-      <form onSubmit={submitHandler}>
-        <input
-          type='text'
-          placeholder='Nombre de Usuario'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type='email'
-          placeholder='Correo Electrónico'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type='password'
-          placeholder='Contraseña'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type='submit' disabled={loading}>
-          {loading ? "Registrando..." : "Registrarse"}
-        </button>
-      </form>
+      {/* Columna de Contenido */}
+      <div className={styles.contentColumn}>
+        {/* Contenedor de Formulario */}
+        <div className={styles.authContainer}>
+          <h2>Crear Cuenta Baluarte</h2>
+          {message && <p className={styles.errorMessage}>{message}</p>}
 
-      <p>
-        ¿Ya tenés una cuenta? <Link to='/login'>Iniciar Sesión</Link>
-      </p>
+          <form onSubmit={submitHandler}>
+            <input
+              type='text'
+              placeholder='Nombre de Usuario'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <input
+              type='email'
+              placeholder='Correo Electrónico'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type='password'
+              placeholder='Contraseña'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type='submit'
+              disabled={loading}
+              className='btn btnPrimary'
+              style={{width: "100%", marginTop: "10px"}}>
+              {loading ? "Registrando..." : "Registrarse"}
+            </button>
+          </form>
+
+          <p>
+            ¿Ya tenés una cuenta? <Link to='/login'>Iniciar Sesión</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
