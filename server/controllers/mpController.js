@@ -4,66 +4,85 @@ const User = require("../models/UserModel");
 
 // Inicializar el cliente de Mercado Pago
 const client = new MercadoPagoConfig({
-  accessToken: process.env.MP_ACCESS_TOKEN,
+  accessToken:
+    "APP_USR-5166685588920907-110316-69580838a5ab17bc3608a94659243dc8-2964966678",
   options: {timeout: 5000},
 });
 
 /**
- * @desc   Crear preferencia de pago para el Plan PRO (ARS 29.900)
- * @route  POST /api/mercadopago/create-preference
+ * @desc   Crear preferencia de pago para el Plan PRO
+ * @route  POST /api/mercadopago/create-preference
  * @access Private
  */
 const createPaymentPreference = asyncHandler(async (req, res) => {
   const user = req.user; // Usuario adjunto por el middleware 'protect'
 
-  // Verificar si el usuario ya es PRO
+  // 1. Verificar si el usuario ya es PRO
   if (user.role === "pro") {
     res.status(400);
     throw new Error("El usuario ya tiene el Plan PRO activo.");
   }
 
-  // Creación del objeto de preferencia
+  const unitPrice = parseFloat(process.env.MP_PLAN_PRO_PRICE);
+  if (isNaN(unitPrice) || unitPrice <= 0) {
+    console.error("MP_PLAN_PRO_PRICE es inválido. Revise el .env del backend.");
+    res.status(500);
+    throw new Error(
+      "El precio del plan no está configurado correctamente en el servidor."
+    );
+  }
+
+  // 2. Creación del objeto de preferencia
   const preferenceBody = {
     items: [
       {
         id: "PLAN-PRO-BALUARTE",
         title: "Suscripción Plan PRO Baluarte - Mensual",
         quantity: 1,
-        unit_price: parseFloat(process.env.MP_PLAN_PRO_PRICE), // ARS 29900
+        unit_price: unitPrice, // Usamos la variable validada
         currency_id: "ARS",
       },
-    ],
-    // Redirecciones
+    ], // Redirecciones (Deben ser URLs absolutas)
     back_urls: {
-      success: process.env.MP_SUCCESS_URL,
+      success: "http://localhost:3000/subscriptions?status=success",
       failure: process.env.MP_FAILURE_URL,
       pending: process.env.MP_FAILURE_URL,
     },
-    auto_return: "approved", // Redirigir automáticamente si el pago es aprobado
 
-    // Metadatos para identificar al usuario y la acción
-    external_reference: user._id.toString(), // Usamos el ID del usuario como referencia
+    external_reference: user._id.toString(), // Configuración para el Webhook
 
-    // Configuración para el Webhook (Notificación)
     notification_url: process.env.MP_NOTIFICATION_URL,
   };
 
   const preference = new Preference(client);
 
   try {
-    const result = await preference.create({body: preferenceBody});
+    const result = await preference.create({body: preferenceBody}); // Devolver el ID de la preferencia y el punto de inicio para la redirección
 
-    // Devolver el ID de la preferencia para que el Frontend redirija (o use el botón de MP)
     res.json({
       preferenceId: result.id,
-      // URL para que el frontend redirija al usuario (según el entorno de MP)
       init_point: result.init_point,
     });
   } catch (error) {
-    console.error("Error al crear la preferencia de pago:", error);
+    const mpErrorMessage =
+      error.message || "Error desconocido en Mercado Pago.";
+
+    if (error.status === 403) {
+      console.error(
+        "Error 403 de MP - Credenciales inválidas:",
+        mpErrorMessage
+      );
+      res.status(403);
+      // Devolvemos el mensaje de error para que el frontend lo muestre
+      throw new Error(
+        "Autorización fallida con Mercado Pago. **REVISA EL ACCESS TOKEN (MP_ACCESS_TOKEN)** en el .env del backend."
+      );
+    }
+
+    console.error("Error al crear la preferencia de pago (Otros):", error);
     res
       .status(500)
-      .json({message: "Error al iniciar el proceso de pago con Mercado Pago."});
+      .json({message: "Error interno del servidor al procesar el pago."});
   }
 });
 
