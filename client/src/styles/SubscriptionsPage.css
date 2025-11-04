@@ -1,0 +1,166 @@
+/* --- HEADER Y MENSAJES --- */
+.subscriptions-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.subscriptions-header h1 {
+  font-size: 2.2em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.error-message {
+  background-color: #ffe0e0;
+  color: #cc0000;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #cc0000;
+  font-weight: bold;
+}
+
+.success-message {
+  background-color: #e0fff0;
+  color: #008844;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #008844;
+  font-weight: bold;
+}
+
+/* --- CONTENEDOR DE PLANES --- */
+.plans-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* --- TARJETA DE PLAN --- */
+.plan-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+}
+
+/* Estilo para el plan actualmente activo */
+.plan-card.current-plan {
+  border-color: #007bff;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
+}
+
+.plan-card h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.plan-card .price {
+  font-size: 3em;
+  font-weight: bold;
+  color: #28a745;
+  margin-bottom: 25px;
+  line-height: 1;
+}
+
+.plan-card .price::after {
+  content: "/ Mes";
+  font-size: 0.4em;
+  font-weight: normal;
+  color: #6c757d;
+}
+
+/* El plan base es gratis */
+.plan-card:first-child .price {
+  color: #6c757d;
+}
+
+.plan-card:first-child .price::after {
+  content: "";
+}
+
+/* --- LISTA DE CARACTERÍSTICAS --- */
+.features-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.features-list li {
+  padding: 10px 0;
+  border-bottom: 1px dotted #e9ecef;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.features-list li::before {
+  content: "✔️";
+  margin-right: 10px;
+  font-size: 1.1em;
+  color: #28a745;
+}
+
+/* --- BOTONES --- */
+.btn-upgrade,
+.btn-current {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* Botón para actualizar a PRO */
+.btn-upgrade {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-upgrade:hover:not(:disabled) {
+  background-color: #ffdd72;
+}
+
+/* Botón de plan actual */
+.btn-current {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-upgrade:disabled,
+.btn-current:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Nota de Mercado Pago */
+.mp-note {
+  margin-top: 40px;
+  padding: 15px;
+  border-left: 5px solid #007bff;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-style: italic;
+  border-radius: 4px;
+  text-align: left;
+}

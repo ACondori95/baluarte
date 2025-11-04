@@ -5,6 +5,7 @@ import api from "../api";
 import {useAuth} from "../auth/AuthContext";
 import currencyFormatter from "../utils/currencyFormatter";
 import {initMercadoPago} from "@mercadopago/sdk-react";
+import "../styles/SubscriptionsPage.css";
 
 // Se mantiene el valor anterior como fallback por si no existe la variable de entorno.
 const PUBLIC_KEY =
@@ -132,7 +133,7 @@ const SubscriptionsPage = () => {
         {/* PLAN PRO */}
         <div className={`plan-card ${isPro ? "current-plan" : ""}`}>
           <h2>{PRO_PLAN.name}</h2>
-          <p className='price'>{currencyFormatter(PRO_PLAN.price)} / Mes</p>
+          <p className='price'>{currencyFormatter(PRO_PLAN.price)}</p>
           <ul className='features-list'>
             {PRO_PLAN.features.map((f, i) => (
               <li key={i}>{f}</li>
