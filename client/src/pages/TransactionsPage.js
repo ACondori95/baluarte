@@ -4,6 +4,7 @@ import api from "../api";
 import currencyFormatter from "../utils/currencyFormatter";
 import {useAuth} from "../auth/AuthContext";
 import {Link} from "react-router-dom";
+import styles from "./TransactionsPage.module.css";
 
 const TransactionsPage = () => {
   const {user} = useAuth();
@@ -157,21 +158,26 @@ const TransactionsPage = () => {
 
   const tipoTransaccion = form.type;
 
+  // Determina qué clase de color aplicar
+  const colorClass = tipoTransaccion === "INGRESO" ? "btnSuccess" : "btnDanger";
+
   return (
-    <Layout>
-      <header className='transactions-header'>
+    <Layout pageTitle='Transacciones'>
+      <header className={styles.transactionsHeader}>
         <h1>Registro de Transacciones ✍️</h1>
         <p>Aquí podés registrar tus Ingresos y Egresos diarios.</p>
       </header>
 
-      {error && <p className='error-message'>{error}</p>}
+      {error && <p className={styles.errorMessage}>{error}</p>}
 
       {/* SECCIÓN DE REGISTRO */}
-      <section className='transaction-form-card'>
+      <section className={styles.transactionFormCard}>
         <h2>Nueva Transacción</h2>
-        <form onSubmit={handleTransactionSubmit} className='transaction-form'>
+        <form
+          onSubmit={handleTransactionSubmit}
+          className={styles.transactionForm}>
           {/* Tipo (Ingreso/Egreso) - Podría ser un toggle */}
-          <div className='form-group'>
+          <div className={styles.formGroup}>
             <label>Tipo de Movimiento:</label>
             <select name='type' value={form.type} onChange={handleFormChange}>
               <option value='EGRESO'>EGRESO</option>
@@ -180,7 +186,7 @@ const TransactionsPage = () => {
           </div>
 
           {/* Categoría */}
-          <div className='form-group'>
+          <div className={styles.formGroup}>
             <label>Categoría:</label>
             <select
               name='categoryId'
@@ -200,7 +206,7 @@ const TransactionsPage = () => {
                 ))}
             </select>
             {categories.length === 0 && (
-              <p className='small-link'>
+              <p className={styles.smallLink}>
                 Aún no tenés categorías. Andá a{" "}
                 <Link to='/categories'>Categorías</Link> para crearlas.
               </p>
@@ -208,7 +214,7 @@ const TransactionsPage = () => {
           </div>
 
           {/* Monto */}
-          <div className='form-group'>
+          <div className={styles.formGroup}>
             <label>Monto ({user?.mainCurrency}):</label>
             <input
               type='number'
@@ -222,7 +228,7 @@ const TransactionsPage = () => {
           </div>
 
           {/* Descripción */}
-          <div className='form-group'>
+          <div className={styles.formGroup}>
             <label>Descripción:</label>
             <input
               type='text'
@@ -235,7 +241,7 @@ const TransactionsPage = () => {
           </div>
 
           {/* Fecha */}
-          <div className='form-group'>
+          <div className={styles.formGroup}>
             <label>Fecha:</label>
             <input
               type='date'
@@ -246,17 +252,20 @@ const TransactionsPage = () => {
             />
           </div>
 
-          <button type='submit' disabled={categories.length === 0}>
+          <button
+            type='submit'
+            disabled={categories.length === 0}
+            className={`${styles.submitButton} btn ${colorClass}`}>
             Registrar {tipoTransaccion}
           </button>
         </form>
       </section>
 
       {/* SECCIÓN DE LISTADO */}
-      <section className='transaction-list-section'>
+      <section className={styles.transactionListSection}>
         <h2>Historial de Transacciones</h2>
         {transactions.length > 0 ? (
-          <table className='data-table'>
+          <table className={styles.dataTable}>
             <thead>
               <tr>
                 <th>Fecha</th>
@@ -272,7 +281,7 @@ const TransactionsPage = () => {
                 <tr
                   key={txn._id}
                   className={
-                    txn.type === "EGRESO" ? "egreso-row" : "ingreso-row"
+                    txn.type === "EGRESO" ? styles.egresoRow : styles.ingresoRow
                   }>
                   <td>{new Date(txn.date).toLocaleDateString()}</td>
                   <td>{txn.description}</td>
@@ -283,7 +292,7 @@ const TransactionsPage = () => {
                     {/* Botón de eliminar */}
                     <button
                       onClick={() => handleDelete(txn._id)}
-                      className='btn-delete'>
+                      className={styles.btnDelete}>
                       Eliminar
                     </button>
                   </td>

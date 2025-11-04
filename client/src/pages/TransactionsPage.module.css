@@ -1,0 +1,144 @@
+/* --- ESTILOS DEL ENCABEZADO Y FORMULARIO DE REGISTRO --- */
+.transactionsHeader {
+  margin-bottom: 25px;
+}
+
+.transactionsHeader h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.transactionsHeader p {
+  color: var(--color-text-secondary);
+}
+
+/* Contenedor del Formulario */
+.transactionFormCard {
+  background-color: var(--color-content-card);
+  padding: 30px;
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--box-shadow-medium);
+  margin-bottom: 40px;
+}
+
+.transactionFormCard h2 {
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  border-bottom: 1px solid var(--color-border-light);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.transactionForm {
+  display: grid;
+  /* Creamos una cuadrícula flexible para formularios grandes */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Estilo de Grupo de Formulario */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 5px;
+  font-size: var(--font-size-small);
+}
+
+/* Inputs y Selects */
+.transactionForm input[type="text"],
+.transactionForm input[type="number"],
+.transactionForm input[type="date"],
+.transactionForm select {
+  padding: var(--input-padding);
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--input-border-radius);
+  font-size: var(--font-size-base);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.transactionForm input:focus,
+.transactionForm select:focus {
+  border-color: var(--color-brand-blue);
+  outline: none;
+}
+
+/* Estilo para el botón de Submit */
+.submitButton {
+  /* Toma el ancho completo de su columna en el grid */
+  grid-column: 1 / -1;
+  padding: 12px 20px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+/* --- ESTILOS DE LA TABLA DE LISTADO DE TRANSACCIONES --- */
+.transactionListSection h2 {
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+}
+
+/* La tabla principal */
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-content-card);
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--box-shadow-light);
+  overflow: hidden;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: var(--font-size-base);
+}
+
+.dataTable th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* Resaltado de filas */
+.ingresoRow {
+  background-color: rgba(92, 184, 92, 0.05); /* Verde muy claro */
+}
+
+.egresoRow {
+  background-color: rgba(217, 83, 79, 0.05); /* Rojo muy claro */
+}
+
+/* Botón de Eliminar */
+.btnDelete {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.btnDelete:hover {
+  color: var(--color-danger-hover);
+  text-decoration: underline;
+}
+
+/* Estilo para enlaces pequeños de ayuda */
+.smallLink {
+  margin-top: 5px;
+  font-size: var(--font-size-small);
+}
