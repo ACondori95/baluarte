@@ -1,0 +1,75 @@
+.btn {
+  /* Estilos base comunes a todos los botones */
+  padding: 10px 20px;
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  text-decoration: none; /* Útil para botones usados como enlaces */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+}
+
+/* --- ESTILOS DE BOTONES ESPECÍFICOS --- */
+
+/* Botón Primario */
+.btnPrimary {
+  background-color: var(--color-brand-blue);
+  color: var(--color-text-light);
+  border-color: var(--color-brand-blue);
+}
+
+.btnPrimary:hover {
+  background-color: var(--color-brand-blue-hover);
+  border-color: var(--color-brand-blue-hover);
+}
+
+/* Botón Secundario */
+.btnSecondary {
+  background-color: #f0f0f0;
+  color: var(--color-text-dark);
+  border-color: var(--color-border-light);
+}
+
+.btnSecondary:hover {
+  background-color: var(--color-border-light);
+}
+
+/* Botón de Advertencia/Resalte */
+.btnWarning {
+  background-color: var(--color-warning);
+  color: var(
+    --color-text-dark
+  ); /* El texto es oscuro, como en el concepto de arte */
+  border-color: var(--color-warning);
+}
+
+.btnWarning:hover {
+  background-color: #e09b3d;
+  border-color: #e09b3d;
+}
+
+/* Botones de INGRESO (Verde) y EGRESO (Rojo) - Vistos en CategoriesPage/TransactionsPage */
+
+.btnSuccess {
+  background-color: var(--color-success);
+  color: var(--color-text-light);
+  border-color: var(--color-success);
+}
+
+.btnSuccess:hover {
+  background-color: #4cae4c; /* Tono de verde más oscuro */
+}
+
+.btnDanger {
+  background-color: var(--color-danger);
+  color: var(--color-text-light);
+  border-color: var(--color-danger);
+}
+
+.btnDanger:hover {
+  background-color: #c9302c; /* Tono de rojo más oscuro */
+}

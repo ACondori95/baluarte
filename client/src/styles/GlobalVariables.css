@@ -1,0 +1,61 @@
+:root {
+  /* --- COLORES PRIMARIOS --- */
+
+  /* Azul Oscuro: Para la barra lateral (Sidebar) y el encabezado principal (Layout Header) */
+  --color-primary-dark: #222e40; /* Casi negro/azul marino */
+
+  /* Azul de Marca (Botones principales, iconos activos, highlights) */
+  --color-brand-blue: #4a90e2; /* Similar al azul de los botones */
+  --color-brand-blue-hover: #3a82d0;
+
+  /* Color de Éxito/Ingreso (Verde) */
+  --color-success: #5cb85c;
+
+  /* Color de Peligro/Egreso (Rojo) */
+  --color-danger: #d9534f;
+
+  /* Color de Advertencia/Resaltado (Naranja para el botón "Actualizar a PRO") */
+  --color-warning: #f0ad4e;
+
+  /* --- COLORES DE FONDO Y TEXTO --- */
+
+  /* Fondo de la Aplicación y Contenedores */
+  --color-background-light: #f5f5f5; /* Fondo general de la página/área de contenido */
+  --color-content-card: #ffffff; /* Fondo para tarjetas y contenedores de datos */
+
+  /* Border, separadores y sombreado ligero */
+  --color-border-light: #e0e0e0;
+  --box-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  /* Colores de Texto */
+  --color-text-dark: #333333; /* Texto principal (negro) */
+  --color-text-light: #ffffff; /* Texto sobre fondos oscurs (ej. Sidebar) */
+  --color-text-secondary: #666666; /* Texto secundario, descripciones */
+
+  /* --- TIPOGRAFÍA Y ESPACIADO --- */
+  --font-family-base: "Arial", sans-serif; /* Usaremos una fuente común como placeholder */
+  --spacing-unit: 8px;
+
+  /* Tamaños de Fuente */
+  --font-size-large: 1.5rem; /* Para títulos principales */
+  --font-size-base: 1rem;
+  --font-size-small: 0.875rem;
+
+  /* --- INPUTS Y FORMULARIOS --- */
+  --input-border-color: #cccccc;
+  --input-padding: 10px 15px;
+  --input-border-radius: 4px;
+}
+
+/* Aplicar estilos base a toda la aplicación */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background-light);
+  font-family: var(--font-family-base);
+  color: var(--color-text-dark);
+}
+
+* {
+  box-sizing: border-box; /* Modelo de caja más predecible */
+}

@@ -1,0 +1,92 @@
+.sidebar {
+  width: 250px; /* Ancho de la barra lateral */
+  background-color: var(--color-primary-dark); /* Azul oscuro/Navy */
+  color: var(--color-text-light); /* Texto claro */
+  height: 100vh;
+  padding: 20px 0;
+  position: fixed; /* Barra lateral fija */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+/* Encabezado de la Sidebar (Donde está el nombre de la App/Negocio) */
+.sidebarHeader {
+  padding: 0 20px 30px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  /* Estilo del texto "Baluarte App" */
+  font-size: var(--font-size-large);
+  font-weight: 700;
+}
+
+/* Navegación (Contenedor de los enlaces) */
+.sidebarNav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo para los elementos <li> */
+.sidebarNav li {
+  margin-bottom: 5px;
+}
+
+/* Estilo general de los enlaces (NavLink) */
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: var(--color-text-light);
+  font-size: var(--font-size-base);
+  transition: background-color 0.2s, color 0.2s;
+  opacity: 0.8; /* Ligeramente más opaco cuando inactivo */
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+/* Estilo para el enlace activo (clase 'active-link' en tu JS) */
+.activeLink {
+  background-color: var(--color-brand-blue); /* Fondo azul de tu concepto */
+  color: var(--color-text-light);
+  font-weight: bold;
+  opacity: 1;
+  border-left: 4px solid var(--color-warning); /* Línea de resalte (opcional) */
+  padding-left: 16px; /* Ajuste por el borde */
+}
+
+/* Pie de página de la Sidebar */
+.sidebarFooter {
+  margin-top: auto; /* Empuja el footer hacia abajo */
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: var(--font-size-small);
+}
+
+.sidebarFooter p {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.logoutButton {
+  /* Usaremos la clase de botón el secundario global, pero la ajustamos para el fondo oscuro */
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-text-light);
+  padding: 8px 15px;
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

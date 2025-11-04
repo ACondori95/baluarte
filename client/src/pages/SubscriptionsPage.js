@@ -5,7 +5,6 @@ import api from "../api";
 import {useAuth} from "../auth/AuthContext";
 import currencyFormatter from "../utils/currencyFormatter";
 import {initMercadoPago} from "@mercadopago/sdk-react";
-import "../styles/SubscriptionsPage.css";
 
 // Se mantiene el valor anterior como fallback por si no existe la variable de entorno.
 const PUBLIC_KEY =

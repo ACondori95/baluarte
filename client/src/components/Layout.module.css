@@ -1,0 +1,54 @@
+.appLayoutContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(
+    --color-background-light
+  ); /* Fondo general gris claro */
+}
+
+/* Área de Contenido Principal */
+.mainContent {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  margin-left: 250px; /* ¡IMPORTANTE! Compensación por el ancho de la Sidebar */
+  display: flex;
+  flex-direction: column;
+}
+
+/* El área de contenido */
+.contentArea {
+  flex-grow: 1;
+  padding: 30px; /* Espaciado interno para el contenido de la página */
+}
+
+/* Estilos para el Encabezado Superior */
+.header {
+  background-color: var(--color-content-card); /* Fondo blanco */
+  padding: 15px 30px;
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.pageTitle {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre los elementos del header (Nombre y Botón) */
+}
+
+.profileName {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.contentArea {
+  flex-grow: 1;
+  padding: 30px; /* Espacio interno para el contenido de la página */
+}
