@@ -2,6 +2,8 @@ import Sidebar from "./Sidebar";
 import {useAuth} from "../auth/AuthContext";
 import styles from "./Layout.module.css";
 
+const PRO_BUTTON_CLASSES = "btn btnWarning";
+
 /**
  * Componente de Layout principal para todas las rutas protegidas.
  * Incluye la navegación lateral y el área de contenido.
@@ -26,7 +28,7 @@ const Layout = ({children, pageTitle = "Dashboard"}) => {
             </span>
 
             {/* Botón de Actualizar a PRO! */}
-            <button className='btn btnWarning'>Actualizar a PRO!</button>
+            <button className={PRO_BUTTON_CLASSES}>Actualizar a PRO!</button>
           </div>
         </header>
 

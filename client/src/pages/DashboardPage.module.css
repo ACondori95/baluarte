@@ -1,0 +1,136 @@
+/* --- ESTRUCTURA GENERAL Y GRID --- */
+/* Contenedor principal de secciones - Define el espaciado entre ellas */
+.dashboardSection {
+  margin-bottom: 30px;
+}
+
+/* --- ALERTAS Y ENCABEZADO --- */
+.dashboardHeader h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 5px;
+}
+
+.dashboardHeader p {
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+
+/* Estilo para la alerta de límite de transacciones */
+.alertLimit {
+  background-color: #fff3cd; /* Amarillo suave */
+  color: #856404; /* Texto marrón oscuro */
+  border: 1px solid #ffeeba;
+  padding: 15px;
+  border-radius: var(--input-border-radius);
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-base);
+}
+
+.btnProAlert {
+  background-color: var(--color-warning);
+  color: var(--color-text-dark);
+  padding: 8px 15px;
+  border-radius: var(--input-border-radius);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* --- TARJETAS DE RESUMEN (FLUJO DE CAJA) --- */
+.summaryCards {
+  display: flex;
+  gap: 20px; /* Espacio entre las tarjetas */
+  margin-top: 15px;
+}
+
+.card {
+  flex: 1; /* Distribuye el espacio de manera uniforme */
+  background-color: var(--color-content-card); /* Fondo blanco */
+  padding: 20px;
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--box-shadow-light);
+  min-width: 250px;
+}
+
+.card h4 {
+  margin-top: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.card span {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* Colores específicos de las tarjetas */
+.incomeCard {
+  color: var(--color-success);
+}
+.expenseCard span {
+  color: var(--color-danger);
+}
+
+/* --- ESTILOS PARA TABLAS --- */
+.budgetTable,
+.txnTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-content-card);
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--box-shadow-light);
+  overflow: hidden; /* Asegura que el border-radius se aplique bien */
+}
+
+.budgetTable th,
+.budgetTable td,
+.txnTable th,
+.txnTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.budgetTable th,
+.txnTable th {
+  background-color: #f7f7f7; /* Fondo ligero para el encabezado */
+  font-weight: 600;
+  color: var(--color-text-dark);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.budgetTable tr:last-child td,
+.txnTable tr:last-child td {
+  border-bottom: none; /* Eliminar border inferior de la última fila */
+}
+
+.dashboardSection .smallLink a {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+  font-size: var(--font-size-small);
+  color: var(--color-brand-blue);
+  text-decoration: none;
+}
+
+/* Resaltado de filas de transacciones */
+.ingresoRow {
+  background-color: rgba(92, 184, 92, 0.05); /* Verde muy claro */
+}
+
+.egresoRow {
+  background-color: rgba(217, 83, 79, 0.05); /* Rojo muy claro */
+}
+
+/* Estilo para mensaje de error */
+.errorMessage {
+  color: var(--color-danger);
+}
