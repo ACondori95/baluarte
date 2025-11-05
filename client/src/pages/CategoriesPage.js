@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import api from "../api";
 import currencyFormatter from "../utils/currencyFormatter";
 import {useAuth} from "../auth/AuthContext";
+import styles from "./CategoriesPage.module.css";
 
 const CategoriesPage = () => {
   const {user} = useAuth();
@@ -134,27 +135,27 @@ const CategoriesPage = () => {
 
   if (loading) {
     return (
-      <Layout>
+      <Layout pageTitle='Categorías'>
         <p>Cargando categorías...</p>
       </Layout>
     );
   }
 
   return (
-    <Layout>
-      <header className='categories-header'>
+    <Layout pageTitle='Categorías'>
+      <header className={styles.categoriesHeader}>
         <h1>Gestión de Categorías y Presupuestos 🏷️</h1>
         <p>
           Define tus categorías y asigna un presupuesto mensual a tus egresos.
         </p>
       </header>
 
-      {error && <p className='error-message'>{error}</p>}
+      {error && <p className={styles.errorMessge}>{error}</p>}
 
       {/* SECCIÓN DE CREACIÓN DE CATEGORÍA */}
-      <section className='category-form-card'>
+      <section className={styles.categoryFormCard}>
         <h2>Crear Nueva Categoría</h2>
-        <form onSubmit={handleCreateSubmit} className='category-form'>
+        <form onSubmit={handleCreateSubmit} className={styles.categoryForm}>
           <input
             type='text'
             name='name'
@@ -182,15 +183,19 @@ const CategoriesPage = () => {
             min='0'
           />
 
-          <button type='submit'>Crear Categoría</button>
+          <button
+            type='submit'
+            className={`${styles.createButton} btn btnPrimary`}>
+            Crear Categoría
+          </button>
         </form>
       </section>
 
       {/* SECCIÓN DE LISTADO Y EDICIÓN */}
-      <section className='category-list-section'>
+      <section className={styles.categoryListSection}>
         <h2>Categorías Activas</h2>
         {categories.length > 0 ? (
-          <table className='data-table category-table'>
+          <table className={styles.dataTable}>
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -204,7 +209,7 @@ const CategoriesPage = () => {
                 <tr
                   key={cat._id}
                   className={
-                    cat.type === "EGRESO" ? "egreso-row" : "ingreso-row"
+                    cat.type === "EGRESO" ? styles.egresoRow : styles.ingresoRow
                   }>
                   <td>{cat.name}</td>
                   <td>{cat.type}</td>
@@ -213,6 +218,7 @@ const CategoriesPage = () => {
                       <input
                         type='number'
                         value={editingBudget}
+                        className={styles.editingBudgetInput}
                         onChange={(e) =>
                           setEditingBudget(parseFloat(e.target.value))
                         }
@@ -223,17 +229,17 @@ const CategoriesPage = () => {
                       currencyFormatter(cat.monthlyBudget)
                     )}
                   </td>
-                  <td>
+                  <td className={styles.actionButtonsContainer}>
                     {editingId === cat._id ? (
                       <>
                         <button
                           onClick={() => handleUpdateBudget(cat._id)}
-                          className='btn-save'>
+                          className={`${styles.btnSave} btn btnSuccess`}>
                           Guardar
                         </button>
                         <button
                           onClick={handleEditCancel}
-                          className='btn-cancel'>
+                          className={`${styles.btnCancel} btn btnSecondary`}>
                           Cancelar
                         </button>
                       </>
@@ -242,13 +248,13 @@ const CategoriesPage = () => {
                         {cat.type === "EGRESO" && (
                           <button
                             onClick={() => handleEditStart(cat)}
-                            className='btn-edit'>
-                            Editar Presupuesto
+                            className={`${styles.btnEdit} btn btnSecondary`}>
+                            Editar
                           </button>
                         )}
                         <button
                           onClick={() => handleDelete(cat._id, cat.name)}
-                          className='btn-delete'>
+                          className={`${styles.btnDelete} btn btnDanger`}>
                           Eliminar
                         </button>
                       </>

@@ -1,0 +1,129 @@
+/* --- ESTILOS DEL ENCABEZADO --- */
+.categoriesHeader {
+  margin-bottom: 25px;
+}
+
+.categoriesHeader h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.categoriesHeader p {
+  color: var(--color-text-secondary);
+}
+
+/* --- FORMULARIO DE CREACIÓN --- */
+.categoryFormCard {
+  background-color: var(--color-content-card);
+  padding: 30px;
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--box-shadow-medium);
+  margin-bottom: 40px;
+}
+
+.categoryFormCard h2 {
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  border-bottom: 1px solid var(--color-border-light);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+/* El formulario principal */
+.categoryForm {
+  display: grid;
+  /* Distribuye los 4 campos en una grilla de 4 colimnas */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: center; /* Alinear los elementos verticalmente */
+}
+
+/* Estilo para inputs, select y el botón de submit */
+.categoryForm input,
+.categoryForm select,
+.categoryForm button {
+  padding: var(--input-padding);
+  border-radius: var(--input-border-radius);
+  font-size: var(--font-size-base);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.categoryForm input[type="text"],
+.categoryForm input[type="number"],
+.categoryForm select {
+  border: 1px solid var(--input-border-color);
+}
+
+.categoryForm input:focus,
+.categoryForm select:focus {
+  border-color: var(--color-brand-blue);
+  outline: none;
+}
+
+/* Botón de Creación: Solo estilos locales de layout */
+.createButton {
+  font-weight: 700;
+  height: 100%;
+}
+
+/* --- LISTADO DE CATEGORÍAS --- */
+.categoryListSection h2 {
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+}
+
+/* Reutilizamos el estilo de tabla principal */
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-content-card);
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--box-shadow-light);
+  overflow: hidden;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: var(--font-size-base);
+}
+
+.dataTable th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* Resaltado de filas */
+.ingresoRow {
+  background-color: rgba(92, 184, 92, 0.05); /* Verde muy claro */
+}
+
+.egresoRow {
+  background-color: rgba(217, 83, 79, 0.05); /* Rojo muy claro */
+}
+
+/* Estilos para los botones de acción dentro de la tabla */
+.actionButtonsContainer button {
+  /* Hacemos que los botones sean compactos y se vean bien juntos */
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+/* Estilo para el input de edición de presupuesto */
+.editingBudgetInput {
+  padding: 5px;
+  width: 80px;
+  text-align: right;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--input-border-radius);
+}
