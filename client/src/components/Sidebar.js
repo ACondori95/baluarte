@@ -10,7 +10,6 @@ const Sidebar = () => {
     {to: "/dashboard", label: "Dashboard"},
     {to: "/transactions", label: "Transacciones"},
     {to: "/categories", label: "Categorías y Presupuestos"},
-    {to: "/config", label: "Configuración"},
   ];
 
   return (

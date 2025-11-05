@@ -1,0 +1,99 @@
+.configContainer {
+  /* Centrar el contenido vertical y horizontalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--color-background-primary); /* Fondo suave */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Tarjeta principal de configuración */
+.configCard {
+  background-color: var(--color-content-card);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow-large); /* Sombra más pronunciada */
+  width: 100%;
+  max-width: 450px; /* Ancho máximo para el formulario */
+}
+
+.configCard h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-brand-blue);
+  margin-bottom: 5px;
+}
+
+.configCard h3 {
+  font-size: 1.2rem;
+  color: var(--color-text-dark);
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+/* --- FORMULARIO Y GRUPOS DE CAMPOS --- */
+.configForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.configForm input[type="text"] {
+  padding: var(--input-padding);
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--input-border-color);
+  font-size: var(--font-size-base);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.configForm input:focus {
+  border-color: var(--color-brand-blue);
+  outline: none;
+}
+
+/* Estilo para el input de moneda deshabilitado */
+.currencyInput {
+  background-color: #f0f0f0; /* Fondo gris para indicar que está deshabilitado */
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* --- BOTÓN DE ACCIÓN --- */
+.submitButton {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Mensajes de error */
+.errorMessage {
+  color: var(--color-danger);
+  background-color: rgba(217, 83, 79, 0.1);
+  padding: 10px;
+  border-radius: var(--input-border-radius);
+  margin-bottom: 20px;
+  text-align: center;
+}

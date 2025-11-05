@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../auth/AuthContext";
 import api from "../api"; // Usamos la instancia de Axios con token
+import styles from "./ConfigurationPage.module.css";
 
 const ConfigurationPage = () => {
   const {user, updateUserConfig} = useAuth();
@@ -55,41 +56,46 @@ const ConfigurationPage = () => {
   };
 
   return (
-    <div className='config-container'>
-      <h2>👋 ¡Bienvenido/a a Baluarte!</h2>
-      <h3>Paso 1: Configura tu Perfil de Negocio</h3>
+    <div className={styles.configContainer}>
+      <div className={styles.configCard}>
+        <h2>👋 ¡Bienvenido/a a Baluarte!</h2>
+        <h3>Paso 1: Configura tu Perfil de Negocio</h3>
 
-      {error && <p className='error-message'>{error}</p>}
+        {error && <p className={styles.errorMessage}>{error}</p>}
 
-      <form onSubmit={submitHandler}>
-        <div className='form-group'>
-          <label>Nombre de tu Negocio:</label>
-          <input
-            type='text'
-            placeholder='Ej: Mi Pyme S.A.'
-            value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
-            required
+        <form onSubmit={submitHandler} className={styles.configForm}>
+          <div className={styles.formGroup}>
+            <label>Nombre de tu Negocio:</label>
+            <input
+              type='text'
+              placeholder='Ej: Mi Pyme S.A.'
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
+              required
+              disabled={loading}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>Moneda Principal:</label>
+            {/* Para el Plan Base, solo permitiremos ARS */}
+            <input
+              type='text'
+              value='ARS (Plan Base)'
+              disabled
+              className={styles.currencyInput}
+            />
+            <input type='hidden' value={currency} />
+          </div>
+
+          <button
+            type='submit'
             disabled={loading}
-          />
-        </div>
-
-        <div className='form-group'>
-          <label>Moneda Principal:</label>
-          {/* Para el Plan Base, solo permitiremos ARS */}
-          <input
-            type='text'
-            value='ARS (Plan Base)'
-            disabled
-            className='currency-input'
-          />
-          <input type='hidden' value={currency} />
-        </div>
-
-        <button type='submit' disabled={loading}>
-          {loading ? "Guardando..." : "Comenzar a usar Baluarte"}
-        </button>
-      </form>
+            className={`${styles.submitButton} btn btnPrimary`}>
+            {loading ? "Guardando..." : "Comenzar a usar Baluarte"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
