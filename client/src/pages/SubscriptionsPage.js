@@ -5,6 +5,7 @@ import api from "../api";
 import {useAuth} from "../auth/AuthContext";
 import currencyFormatter from "../utils/currencyFormatter";
 import {initMercadoPago} from "@mercadopago/sdk-react";
+import styles from "./SubscriptionsPage.module.css";
 
 // Se mantiene el valor anterior como fallback por si no existe la variable de entorno.
 const PUBLIC_KEY =
@@ -107,33 +108,37 @@ const SubscriptionsPage = () => {
   const isPro = user.role === "pro";
 
   return (
-    <Layout>
-      <header className='subscriptions-header'>
+    <Layout pageTitle='Planes'>
+      <header className={styles.subscriptionsHeader}>
         <h1>Planes y Suscripciones ✨</h1>
         <p>Tu Plan actual es: **{currentPlan.name}**</p>
       </header>
-      {error && <p className='error-message'>{error}</p>}
-      {successMessage && <p className='success-message'>{successMessage}</p>}
-      <div className='plans-container'>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+      {successMessage && (
+        <p className={styles.successMessage}>{successMessage}</p>
+      )}
+      <div className={styles.plansContainer}>
         {/* PLAN BASE */}
-        <div className={`plan-card ${!isPro ? "current-plan" : ""}`}>
+        <div
+          className={`${styles.planCard} ${!isPro ? styles.currentPlan : ""}`}>
           <h2>{BASE_PLAN.name}</h2>
-          <p className='price'>Gratis</p>
-          <ul className='features-list'>
+          <p className={styles.price}>Gratis</p>
+          <ul className={styles.featuresList}>
             {BASE_PLAN.features.map((f, i) => (
               <li key={i}>{f}</li>
             ))}
           </ul>
-          <button className='btn-current' disabled>
+          <button className={`${styles.btnCurrent} btn btnSecondary`} disabled>
             Plan Actual
           </button>
         </div>
 
         {/* PLAN PRO */}
-        <div className={`plan-card ${isPro ? "current-plan" : ""}`}>
+        <div
+          className={`${styles.planCard} ${isPro ? styles.currentPlan : ""}`}>
           <h2>{PRO_PLAN.name}</h2>
-          <p className='price'>{currencyFormatter(PRO_PLAN.price)}</p>
-          <ul className='features-list'>
+          <p className={styles.price}>{currencyFormatter(PRO_PLAN.price)}</p>
+          <ul className={styles.featuresList}>
             {PRO_PLAN.features.map((f, i) => (
               <li key={i}>{f}</li>
             ))}
@@ -141,7 +146,7 @@ const SubscriptionsPage = () => {
           <button
             onClick={handleUpgradeToPro}
             disabled={isPro || loading}
-            className='btn-upgrade'>
+            className={`${styles.btnUpgrade} btn btnSuccess`}>
             {isPro
               ? "Activado"
               : loading
@@ -152,10 +157,8 @@ const SubscriptionsPage = () => {
       </div>
 
       {/* NOTA sobre Webhooks y la URL de Notificación */}
-      <blockquote className='mp-note'>
+      <blockquote className={styles.mpNote}>
         **Nota:** Una vez que inicies el pago, serás redirigido a Mercado Pago.
-        El backend está configurado para escuchar notificaciones (Webhooks) de
-        Mercado Pago para **confirmar el cambio de rol** de forma segura.
       </blockquote>
     </Layout>
   );

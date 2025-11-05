@@ -160,8 +160,8 @@ const DashboardPage = () => {
           </table>
         ) : (
           <p>
-            No hay transacciones recientes. ¡
-            <Link to='/transactions'>Registrá una ahora</Link>!
+            No hay transacciones recientes.{" "}
+            <Link to='/transactions'>¡Registrá una ahora!</Link>
           </p>
         )}
       </section>
